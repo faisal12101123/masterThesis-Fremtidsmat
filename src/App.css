@@ -1,0 +1,58 @@
+.container {
+    padding-block-end: 2rem;
+}
+
+.form-search {
+    background: #F6F6F6;
+    padding: 0.5rem;
+    border: solid 1px #ADACAC;
+}
+
+.img-logo {
+    width: 163px;
+    height: 66px;
+}
+
+.nav-logo {
+    height: 2rem;
+    padding: 1rem;
+    color: #000000;
+}
+
+.table {
+    border: 1px solid #dee2e6;
+}
+
+.bg-light {
+    --bs-bg-opacity: 0;
+}
+
+.table-font {
+    font-weight: 500;
+}
+
+.food-result-container {
+    background: #DAECD8;
+    padding: 1rem;
+}
+
+.button-div {
+    text-align: center;
+}
+
+.button-front-search {
+    padding-top: 1.2rem;
+}
+
+.button-search {
+    background-color: #00205B;
+    border-block-color: #00205B;
+}
+
+.button-view {
+    border: solid 1px #C1C1C1;
+}
+
+.alert-box {
+    border: 2px solid red;
+}
