@@ -36,6 +36,11 @@
     padding: 1rem;
 }
 
+.food-negResult-container {
+    background: #f3b7b7;
+    padding: 1rem;
+}
+
 .button-div {
     text-align: center;
 }

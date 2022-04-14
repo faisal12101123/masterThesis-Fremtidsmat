@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const LysLapskaus = (props) => {
+const Margarin = (props) => {
 
     const [energi, setEnergi] = useState(false);
     const [energiKal, setEnergiKal] = useState(false);
@@ -9,9 +9,9 @@ const LysLapskaus = (props) => {
     const [showResults, setShowResults] = useState(false);
     const onClick = () => {
         const newResult = showResults === 'false' ? 'true' : 'false';
-        if (nutrition.energi != "" && nutrition.energi <= 1.5) {
-            if (nutrition.energiKal != "" && nutrition.energiKal <= 3) {
-                if (nutrition.fett != "" && nutrition.fett <= 0.8) {
+        if (nutrition.energi != "" && nutrition.energi <= 80) {
+            if (nutrition.energiKal != "" && nutrition.energiKal <= 26.4) {
+                if (nutrition.fett != "" && nutrition.fett <= 1.1) {
                     props.changeDiv(newResult);
                     setShowResults(true);
                 } else {
@@ -19,19 +19,19 @@ const LysLapskaus = (props) => {
                 }
             } else {
                 setEnergiKal(true);
-                if (nutrition.fett === "" || nutrition.fett > 0.8) {
+                if (nutrition.fett === "" || nutrition.fett > 1.1) {
                     setFett(true);
                 }
             }
         } else {
             setEnergi(true);
-            if (nutrition.energiKal === "" || nutrition.energiKal > 3) {
+            if (nutrition.energiKal === "" || nutrition.energiKal > 26.4) {
                 setEnergiKal(true);
-                if (nutrition.fett === "" || nutrition.fett > 0.8) {
+                if (nutrition.fett === "" || nutrition.fett > 1.1) {
                     setFett(true);
                 }
             } else {
-                if (nutrition.fett === "" || nutrition.fett > 0.8) {
+                if (nutrition.fett === "" || nutrition.fett > 1.1) {
                     setFett(true);
                 }
             }
@@ -76,16 +76,28 @@ const LysLapskaus = (props) => {
                                 <input type="text" className="form-control"></input>
                             </td>
                         </tr>
-                        <tr>
+                        <tr className={energi ? "alert-box" : null}>
                             <th scope="row" className="table-font">Fett (g)</th>
+                            <td>
+                                <input type="text" name="energi" value={nutrition.energi} onChange={changeHandle} className="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr className={energiKal ? "alert-box" : null}>
+                            <th scope="row" className="table-font">Mettede fettsyrer (g)</th>
+                            <td>
+                                <input type="text" name="energiKal" value={nutrition.energiKal} onChange={changeHandle} className="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" className="table-font">Enumettede fettsyrer (g)</th>
                             <td>
                                 <input type="text" className="form-control"></input>
                             </td>
                         </tr>
-                        <tr className={energi ? "alert-box" : null}>
-                            <th scope="row" className="table-font">Mettede fettsyrer (g)</th>
+                        <tr>
+                            <th scope="row" className="table-font">Flerumettede fettsyrer (g)</th>
                             <td>
-                                <input type="text" name="energi" value={nutrition.energi} onChange={changeHandle} className="form-control"></input>
+                                <input type="text" className="form-control"></input>
                             </td>
                         </tr>
                         <tr>
@@ -94,14 +106,8 @@ const LysLapskaus = (props) => {
                                 <input type="text" className="form-control"></input>
                             </td>
                         </tr>
-                        <tr className={energiKal ? "alert-box" : null}>
-                            <th scope="row" className="table-font">Sukkerarter (g)</th>
-                            <td>
-                                <input type="text" name="energiKal" value={nutrition.energiKal} onChange={changeHandle} className="form-control"></input>
-                            </td>
-                        </tr>
                         <tr>
-                            <th scope="row" className="table-font">Fiber (g)</th>
+                            <th scope="row" className="table-font">Sukkerarter (g)</th>
                             <td>
                                 <input type="text" className="form-control"></input>
                             </td>
@@ -131,4 +137,4 @@ const LysLapskaus = (props) => {
     )
 };
 
-export default LysLapskaus;
+export default Margarin;
