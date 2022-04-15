@@ -4,14 +4,13 @@ const Yoghurt = (props) => {
 
     const [fett, setFett] = useState(false);
 
-    const [showResults, setShowResults] = useState(false);
     const onClick = () => {
-        const newResult = showResults === 'false' ? 'true' : 'false';
         if (nutrition != "" && nutrition <= 1.5) {
-                    props.changeDiv(newResult);
-                    setShowResults(true);
+            props.changeDiv(true);
+            setFett(false);
         } else {
             setFett(true);
+            props.changeDiv(false);
         }
     };
 

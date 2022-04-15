@@ -47,7 +47,7 @@ const Calculator = () => {
     const [showResults, setShowResults] = useState('');
     const updateResult = (newResult) => {
         setShowResults(newResult)
-    }
+    };
 
     return (
 
@@ -97,7 +97,9 @@ const Calculator = () => {
                         <div className="container food-result-container">
                             <h5>Nøkkelhullet</h5>
                             <p>Produktet innfrir Nøkkelhullet. </p>
-                        </div> : <div className="container food-negResult-container">
+                        </div> : null
+                    }
+                    {showResults === false &&  <div className="container food-negResult-container">
                             <h5>Nøkkelhullet</h5>
                             <p>Produktet løser ikke inn nøkkelhullet. </p>
                         </div>

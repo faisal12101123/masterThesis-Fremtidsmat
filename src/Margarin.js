@@ -6,33 +6,46 @@ const Margarin = (props) => {
     const [energiKal, setEnergiKal] = useState(false);
     const [fett, setFett] = useState(false);
 
-    const [showResults, setShowResults] = useState(false);
     const onClick = () => {
-        const newResult = showResults === 'false' ? 'true' : 'false';
         if (nutrition.energi != "" && nutrition.energi <= 80) {
             if (nutrition.energiKal != "" && nutrition.energiKal <= 26.4) {
                 if (nutrition.fett != "" && nutrition.fett <= 1.1) {
-                    props.changeDiv(newResult);
-                    setShowResults(true);
+                    props.changeDiv(true);
+                    setEnergiKal(false);
+                    setFett(false);
+                    setEnergi(false);
                 } else {
                     setFett(true);
+                    props.changeDiv(false);
                 }
+                setEnergi(false);
+                setEnergiKal(false);
             } else {
                 setEnergiKal(true);
+                props.changeDiv(false);
                 if (nutrition.fett === "" || nutrition.fett > 1.1) {
                     setFett(true);
+                } else {
+                    setFett(false);
                 }
             }
+            setEnergi(false);
         } else {
             setEnergi(true);
+            props.changeDiv(false);
             if (nutrition.energiKal === "" || nutrition.energiKal > 26.4) {
                 setEnergiKal(true);
                 if (nutrition.fett === "" || nutrition.fett > 1.1) {
                     setFett(true);
+                } else {
+                    setFett(false);
                 }
             } else {
+                setEnergiKal(false);
                 if (nutrition.fett === "" || nutrition.fett > 1.1) {
                     setFett(true);
+                } else {
+                    setFett(false);
                 }
             }
         }
