@@ -5,6 +5,9 @@ import HeaderCalculator from './HeaderCalculator';
 import LysLapskaus from './LysLapskaus';
 import Margarin from './Margarin';
 import Yoghurt from './Yoghurt';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Calculator = () => {
 
@@ -17,18 +20,23 @@ const Calculator = () => {
     const selectBread = [
         { value: 'yoghurt', label: 'Yoghurt' },
         { value: 'kefir', label: 'Kefir' },
-        { value: 'romme', label: 'Rømme' }
+        { value: 'romme', label: 'Rømme' },
+        { value: 'syrnet melk', label: 'Syrnet melk' }
     ];
 
     const selectFat = [
-        { value: 'margarin og smor matolje', label: 'Margarin og smør Matolje' },
-        { value: 'frityrfett majones', label: 'Frityrfett Majones' },
-        { value: 'dressing tran', label: 'Dressing Tran' }
+        { value: 'margarin og smor', label: 'Margarin og smør' },
+        { value: 'matolje', label: 'Matolje' },
+        { value: 'frityrfett', label: 'Frityrfett' },
+        { value: 'majones', label: 'Majones' },
+        { value: 'dressing', label: 'Dressing' },
+        { value: 'tran', label: 'Tran' }
     ];
 
     const selectVeg = [
-        { value: 'lys lapskaus', label: 'Lys lapskaus' },
+        { value: 'lys lapskaus', label: 'Lapskaus' },
         { value: 'fiskegrateng', label: 'Fiskegrateng' },
+        { value: 'kjottkaker i brun saus', label: 'Kjøttkaker i brun saus' },
         { value: 'lassagne', label: 'Lassagne' }
     ];
 
@@ -47,6 +55,14 @@ const Calculator = () => {
     const [showResults, setShowResults] = useState('');
     const updateResult = (newResult) => {
         setShowResults(newResult)
+    };
+
+    const [info, setInfo] = useState('');
+    const onClick = () => {
+        setInfo(true);
+    };
+    const onClickClose = () => {
+        setInfo(false);
     };
 
     return (
@@ -80,7 +96,7 @@ const Calculator = () => {
                     }
 
                     {selectsGroup === 'matfett og matfettblandinger' &&
-                        selectsProduct === 'margarin og smor matolje' &&
+                        selectsProduct === 'margarin og smor' &&
                         <Margarin changeDiv={updateResult} />
                     }
 
@@ -92,17 +108,42 @@ const Calculator = () => {
                 </div>
 
                 <div className="col-md-6">
-                    <h3>Mulige ernærings- og helsepåstander</h3>
+                    <div className='row'>
+                        <div className='col-md-10'>
+                            <h3>Mulige ernærings- og helsepåstander</h3>
+                        </div>
+                        <div className='col-md-2'>
+                            <FontAwesomeIcon icon={faCircleInfo} />
+                        </div>
+                    </div>
+
                     {showResults ?
                         <div className="container food-result-container">
                             <h5>Nøkkelhullet</h5>
                             <p>Produktet innfrir Nøkkelhullet. </p>
                         </div> : null
                     }
-                    {showResults === false &&  <div className="container food-negResult-container">
-                            <h5>Nøkkelhullet</h5>
-                            <p>Produktet løser ikke inn nøkkelhullet. </p>
+                    {showResults === false && <div className="container food-negResult-container">
+                        <h5>Nøkkelhullet</h5>
+                        <div className='row'>
+                            <div className='col-md-10'>
+                                <p>Produktet innfrir ikke Nøkkelhullet. </p>
+                            </div>
+                            <div className='col-md-2'>
+                                <FontAwesomeIcon className='info-button' icon={faCircleInfo} onClick={onClick} />
+                            </div>
                         </div>
+                        {info ? <div className="container info-div row">
+                            <div className='col-md-10'>
+                                <p>Les mer om hvordan oppnå kriteriene på Lovdata’s Forskrift om frivillig merking av næringsmidler med Nøkkelhullet:
+                                    <a href="https://lovdata.no/dokument/SF/forskrift/2015-02-18-139">lovdata.no</a></p>
+                            </div>
+                            <div className='col-md-2'>
+                                <FontAwesomeIcon className='x-button' icon={faXmarkCircle} onClick={onClickClose} />
+                            </div>
+                        </div> : null
+                        }
+                    </div>
                     }
                 </div>
 
