@@ -108,19 +108,29 @@ const Calculator = () => {
                 </div>
 
                 <div className="col-md-6">
-                    <div className='row'>
-                        <div className='col-md-10'>
-                            <h3>Mulige ernærings- og helsepåstander</h3>
-                        </div>
-                        <div className='col-md-2'>
-                            <FontAwesomeIcon icon={faCircleInfo} />
-                        </div>
-                    </div>
+                    <h3>Mulige ernærings- og helsepåstander</h3>
 
                     {showResults ?
                         <div className="container food-result-container">
                             <h5>Nøkkelhullet</h5>
-                            <p>Produktet innfrir Nøkkelhullet. </p>
+                            <div className='row'>
+                                <div className='col-md-10'>
+                                    <p>Produktet innfrir Nøkkelhullet. </p>
+                                </div>
+                                <div className='col-md-2'>
+                                    <FontAwesomeIcon className='info-button' icon={faCircleInfo} onClick={onClick} />
+                                </div>
+                            </div>
+                            {info ? <div className="container info-div row">
+                                <div className='col-md-10'>
+                                    <p>Les mer om hvilke krav det stilles for merking av Nokkellhullet på Lovdatas "Forskrift om frivillig merking a nœringsmidler med Nokkellhullet":
+                                        <a href="https://lovdata.no/dokument/SF/forskrift/2015-02-18-139">lovdata.no</a></p>
+                                </div>
+                                <div className='col-md-2'>
+                                    <FontAwesomeIcon className='x-button' icon={faXmarkCircle} onClick={onClickClose} />
+                                </div>
+                            </div> : null
+                            }
                         </div> : null
                     }
                     {showResults === false && <div className="container food-negResult-container">

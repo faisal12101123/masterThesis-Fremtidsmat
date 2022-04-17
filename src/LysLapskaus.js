@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const LysLapskaus = (props) => {
 
@@ -96,7 +98,7 @@ const LysLapskaus = (props) => {
                             </td>
                         </tr>
                         <tr className={energi ? "alert-box" : null}>
-                            <th scope="row" className="table-font">Mettede fettsyrer (g)</th>
+                            <th scope="row" className="table-font">{energi ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Mettede fettsyrer (g)</th>
                             <td>
                                 <input type="text" name="energi" value={nutrition.energi} onChange={changeHandle} className="form-control"></input>
                             </td>
@@ -108,7 +110,7 @@ const LysLapskaus = (props) => {
                             </td>
                         </tr>
                         <tr className={energiKal ? "alert-box" : null}>
-                            <th scope="row" className="table-font">Sukkerarter (g)</th>
+                            <th scope="row" className="table-font">{energiKal ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Sukkerarter (g)</th>
                             <td>
                                 <input type="text" name="energiKal" value={nutrition.energiKal} onChange={changeHandle} className="form-control"></input>
                             </td>
@@ -126,7 +128,7 @@ const LysLapskaus = (props) => {
                             </td>
                         </tr>
                         <tr className={fett ? "alert-box" : null}>
-                            <th scope="row" className="table-font">Salt (g)</th>
+                            <th scope="row" className="table-font">{fett ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Salt (g)</th>
                             <td colSpan="2">
                                 <input type="text" name="fett" value={nutrition.fett} onChange={changeHandle} className="form-control"></input>
                             </td>

@@ -78,3 +78,7 @@
     float: right; 
     cursor: pointer;
 }
+
+.alert-icon {
+    color: red;
+}
