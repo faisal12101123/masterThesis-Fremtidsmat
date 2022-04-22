@@ -1,25 +1,101 @@
 import { useState } from "react";
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faBan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Yoghurt = (props) => {
 
     const [fett, setFett] = useState(false);
+    const [energi, setEnergi] = useState(false);
+    const [energiKal, setEnergiKal] = useState(false);
+    const [mettede, setMettede] = useState(false);
+    const [karbohydrat, setKarbohydrat] = useState(false);
+    const [sukkerarter, setSukkerarter] = useState(false);
+    const [protein, setProtein] = useState(false);
+    const [salt, setSalt] = useState(false);
+
+    const [nutrition, setNutrition] = useState({
+        fett: '',
+        energi: '',
+        energiKal: '',
+        mettede: '',
+        karbohydrat: '',
+        sukkerarter: '',
+        protein: '',
+        salt: ''
+    });
+    const changeHandle = (event) => {
+        setNutrition({
+            ...nutrition,
+            [event.target.name]: [event.target.value]
+        });
+    };
 
     const onClick = () => {
-        if (nutrition != "" && nutrition <= 1.5) {
+        if (nutrition.energi != "" && nutrition.energiKal != "" && nutrition.mettede != "" && nutrition.karbohydrat != "" && nutrition.protein != "" && nutrition.salt != "" && nutrition.sukkerarter != "" && nutrition.fett != "" && nutrition.fett <= 1.5) {
             props.changeDiv(true);
             setFett(false);
+            setEnergi(false);
+            setEnergiKal(false);
+            setMettede(false);
+            setKarbohydrat(false);
+            setSukkerarter(false);
+            setSalt(false);
+            setProtein(false);
         } else {
-            setFett(true);
-            props.changeDiv(false);
+            if (nutrition.energi === "" || nutrition.energi < 0) {
+                setEnergi(true);
+                props.changeDiv(false);
+            } else {
+                setEnergi(false);
+            }
+            if (nutrition.energiKal === "" || nutrition.energiKal < 0) {
+                setEnergiKal(true);
+                props.changeDiv(false);
+            } else {
+                setEnergiKal(false);
+            }
+            if (nutrition.mettede === "" || nutrition.mettede < 0) {
+                setMettede(true);
+                props.changeDiv(false);
+            } else {
+                setMettede(false);
+            }
+            if (nutrition.karbohydrat === "" || nutrition.karbohydrat < 0) {
+                setKarbohydrat(true);
+                props.changeDiv(false);
+            } else {
+                setKarbohydrat(false);
+            }
+            if (nutrition.sukkerarter === "" || nutrition.sukkerarter < 0) {
+                setSukkerarter(true);
+                props.changeDiv(false);
+            } else {
+                setSukkerarter(false);
+            }
+            if (nutrition.protein === "" || nutrition.protein < 0) {
+                setProtein(true);
+                props.changeDiv(false);
+            } else {
+                setProtein(false);
+            }
+            if (nutrition.salt === "" || nutrition.salt < 0) {
+                setSalt(true);
+                props.changeDiv(false);
+            } else {
+                setSalt(false);
+            }
+            if (nutrition.fett === "" || nutrition.fett > 1.5 || nutrition.fett < 0) {
+                setFett(true);
+                props.changeDiv(false);
+            } else {
+                setFett(false);
+            }
         }
     };
 
-    const [nutrition, setNutrition] = useState('');
-    const changeHandle = (event) => {
-        setNutrition(event.target.value);
-    };
+    console.log(nutrition);
+    console.log()
 
     return (
         <div>
@@ -31,68 +107,68 @@ const Yoghurt = (props) => {
                     <thead>
                         <tr>
                             <th scope="col" className="table-font">Energi eller næringsstoff</th>
-                            <th scope="col" className="table-font">Mengde (gram)</th>
+                            <th scope="col" className="table-font">Mengde</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th for="energi" scope="row" className="table-font">Energi (kj)</th>
+                        <tr className={energi ? "alert-box" : null}>
+                            <th for="energi" scope="row" className="table-font">{energi ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Energi (kj)</th>
                             <td>
-                                <input id='energi' aria-labelledby="energi" type="text" className="form-control"></input>
+                                <input id='energi' aria-labelledby="energi" type="number" min="0" step="any" name="energi" value={nutrition.energi} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr>
-                            <th for="energiKal" scope="row" className="table-font">Energi (kcal)</th>
+                        <tr className={energiKal ? "alert-box" : null}>
+                            <th for="energiKal" scope="row" className="table-font">{energiKal ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Energi (kcal)</th>
                             <td>
-                                <input id='energiKal' aria-labelledby="energiKal" type="text" className="form-control"></input>
+                                <input id='energiKal' aria-labelledby="energiKal" type="number" min="0" step="any" name="energiKal" value={nutrition.energiKal} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={fett ? "alert-box" : null}>
-                            <th for="fett" scope="row" className="table-font">{fett ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Fett (g)</th>
+                            <th for="fett" scope="row" className="table-font">{fett ? <FontAwesomeIcon className="alert-icon" icon={faBan} /> : null} Fett (g)</th>
                             <td>
-                                <input id='fett' aria-labelledby="fett" type="text" name="fett" value={nutrition} onChange={changeHandle} className="form-control"></input>
+                                <input id='fett' aria-labelledby="fett" type="number" min="0" step="any" name="fett" value={nutrition.fett} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr>
-                            <th for='Mettede' scope="row" className="table-font">Mettede fettsyrer (g)</th>
+                        <tr className={mettede ? "alert-box" : null}>
+                            <th for='mettede' scope="row" className="table-font">{mettede ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Mettede fettsyrer (g)</th>
                             <td>
-                                <input id='Mettede' aria-labelledby="Mettede" type="text" className="form-control"></input>
+                                <input id='mettede' aria-labelledby="Mettede" type="number" min="0" step="any" name="mettede" value={nutrition.mettede} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr>
-                            <th for='Karbohydrat' scope="row" className="table-font">Karbohydrat (g)</th>
+                        <tr className={karbohydrat ? "alert-box" : null}>
+                            <th for='karbohydrat' scope="row" className="table-font">{karbohydrat ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Karbohydrat (g)</th>
                             <td>
-                                <input id='Karbohydrat' aria-labelledby="Karbohydrat" type="text" className="form-control"></input>
+                                <input id='karbohydrat' aria-labelledby="Karbohydrat" type="number" min="0" step="any" name="karbohydrat" value={nutrition.karbohydrat} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr>
-                            <th for='Sukkerarter' scope="row" className="table-font">Sukkerarter (g)</th>
+                        <tr className={sukkerarter ? "alert-box" : null}>
+                            <th for='sukkerarter' scope="row" className="table-font">{sukkerarter ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Sukkerarter (g)</th>
                             <td>
-                                <input id='Sukkerarter' aria-labelledby="Sukkerarter" type="text" className="form-control"></input>
+                                <input id='sukkerarter' aria-labelledby="Sukkerarter" type="number" min="0" step="any" name="sukkerarter" value={nutrition.sukkerarter} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr>
-                            <th for='Protein' scope="row" className="table-font">Protein (g)</th>
+                        <tr className={protein ? "alert-box" : null}>
+                            <th for='protein' scope="row" className="table-font">{protein ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Protein (g)</th>
                             <td>
-                                <input id='Protein' aria-labelledby="Protein" type="text" className="form-control"></input>
+                                <input id='protein' aria-labelledby="Protein" type="number" min="0" step="any" name="protein" value={nutrition.protein} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr>
-                            <th for='Salt' scope="row" className="table-font">Salt (g)</th>
+                        <tr className={salt ? "alert-box" : null}>
+                            <th for='salt' scope="row" className="table-font">{salt ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Salt (g)</th>
                             <td>
-                                <input id='Salt' aria-labelledby="Salt" type="text" className="form-control"></input>
+                                <input id='salt' aria-labelledby="Salt" type="number" min="0" step="any" name="salt" value={nutrition.salt} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr>
                             <th for='Vitamin' scope="row" className="table-font">Vitamin B12 (µg)</th>
                             <td>
-                                <input id='Vitamin' aria-labelledby="Vitamin" type="text" className="form-control"></input>
+                                <input id='Vitamin' aria-labelledby="Vitamin" type="number" min="0" step="any" className="form-control"></input>
                             </td>
                         </tr>
                         <tr>
                             <th for='Kalsium' scope="row" className="table-font">Kalsium (mg)</th>
                             <td colSpan="2">
-                                <input id='Kalsium' aria-labelledby="Kalsium" type="text" className="form-control"></input>
+                                <input id='Kalsium' aria-labelledby="Kalsium" type="number" min="0" step="any" className="form-control"></input>
                             </td>
                         </tr>
                     </tbody>

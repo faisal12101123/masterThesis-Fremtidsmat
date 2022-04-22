@@ -76,19 +76,31 @@ const Calculator = () => {
                 <div className="col-md-6">
                     <h3>Legg inn næringsinnhold</h3>
 
+                    <label for="matnavn" class="form-label"><strong>Matvarenavn</strong></label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" aria-describedby="matnavn" />
+                    </div>
+
+                    <label for="matgruppe" class="form-label"><strong>Matvaregruppe</strong></label>
                     <Select placeholder={<div>Velg matvaregruppe</div>} className="form-select-md mb-3" onChange={handlerGroup} options={selectOption} />
 
                     {selectsGroup === 'fermenterte meieriprodukter' &&
-                        <Select placeholder={<div>Velg mat</div>} className="form-select-md mb-3" onChange={handlerProduct} options={selectBread} />
-                    }
+                        <div>
+                            <label for="mat" class="form-label"><strong>Matkategori</strong></label>
+                            <Select placeholder={<div>Velg mat</div>} className="form-select-md mb-3" onChange={handlerProduct} options={selectBread} />
+                        </div>}
 
                     {selectsGroup === 'matfett og matfettblandinger' &&
-                        <Select placeholder={<div>Velg mat</div>} className="form-select-md mb-3" onChange={handlerProduct} options={selectFat} />
-                    }
+                        <div>
+                            <label for="mat" class="form-label"><strong>Matkategori</strong></label>
+                            <Select placeholder={<div>Velg mat</div>} className="form-select-md mb-3" onChange={handlerProduct} options={selectFat} />
+                        </div>}
 
                     {selectsGroup === 'middagsretter' &&
-                        <Select placeholder={<div>Velg mat</div>} className="form-select-md mb-3" onChange={handlerProduct} options={selectVeg} />
-                    }
+                        <div>
+                            <label for="mat" class="form-label"><strong>Matkategori</strong></label>
+                            <Select placeholder={<div>Velg mat</div>} className="form-select-md mb-3" onChange={handlerProduct} options={selectVeg} />
+                        </div>}
 
                     {selectsGroup === 'fermenterte meieriprodukter' &&
                         selectsProduct === 'yoghurt' &&

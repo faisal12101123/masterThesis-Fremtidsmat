@@ -52,6 +52,7 @@
 .button-search {
     background-color: #00205B;
     border-block-color: #00205B;
+    float: right;
 }
 
 .button-view {
@@ -81,4 +82,9 @@
 
 .alert-icon {
     color: red;
+    cursor: help;
+}
+
+.icon{
+    display: inline-block;
 }
