@@ -10,11 +10,14 @@ const LysLapskaus = (props) => {
     const [energiKal, setEnergiKal] = useState(false);
     const [fett, setFett] = useState(false);
     const [mettede, setMettede] = useState(false);
+    const [mettedeNull, setMettedeNull] = useState(false);
     const [karbohydrat, setKarbohydrat] = useState(false);
     const [sukkerarter, setSukkerarter] = useState(false);
+    const [sukkerarterNull, setSukkerarterNull] = useState(false);
     const [fiber, setFiber] = useState(false);
     const [protein, setProtein] = useState(false);
     const [salt, setSalt] = useState(false);
+    const [saltNull, setSaltNull] = useState(false);
 
     const [nutrition, setNutrition] = useState({
         energi: "",
@@ -43,9 +46,12 @@ const LysLapskaus = (props) => {
             setEnergi(false);
             setEnergiKal(false);
             setMettede(false);
+            setMettedeNull(false);
             setKarbohydrat(false);
             setSukkerarter(false);
+            setSukkerarterNull(false);
             setSalt(false);
+            setSaltNull(false);
             setProtein(false);
             setFiber(false);
         } else {
@@ -61,7 +67,13 @@ const LysLapskaus = (props) => {
             } else {
                 setEnergiKal(false);
             }
-            if (nutrition.mettede === "" || nutrition.mettede < 0 || nutrition.mettede > 1.5) {
+            if (nutrition.mettede === "" || nutrition.mettede < 0 ) {
+                setMettedeNull(true);
+                props.changeDiv(false);
+            } else {
+                setMettedeNull(false);
+            }
+            if (nutrition.mettede > 1.5 ) {
                 setMettede(true);
                 props.changeDiv(false);
             } else {
@@ -91,13 +103,25 @@ const LysLapskaus = (props) => {
             } else {
                 setProtein(false);
             }
-            if (nutrition.salt === "" || nutrition.salt < 0 || nutrition.salt > 0.8) {
+            if (nutrition.salt === "" || nutrition.salt < 0 ) {
+                setSaltNull(true);
+                props.changeDiv(false);
+            } else {
+                setSaltNull(false);
+            }
+            if (nutrition.salt > 0.8) {
                 setSalt(true);
                 props.changeDiv(false);
             } else {
                 setSalt(false);
             }
-            if (nutrition.sukkerarter === "" || nutrition.sukkerarter > 3 || nutrition.sukkerarter < 0) {
+            if (nutrition.sukkerarter === "" || nutrition.sukkerarter < 0) {
+                setSukkerarterNull(true);
+                props.changeDiv(false);
+            } else {
+                setSukkerarterNull(false);
+            }
+            if (nutrition.sukkerarter > 3) {
                 setSukkerarter(true);
                 props.changeDiv(false);
             } else {
@@ -138,8 +162,13 @@ const LysLapskaus = (props) => {
                                 <input type="number" min="0" step="any" name="fett" value={nutrition.fett} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr className={mettede ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{mettede ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mettede fettsyrer mengde. Mettede fettsyrer skal være lavere enn eller lik 1,5 g / 100 g" placement="right" arrow><div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null} Mettede fettsyrer (g)</th>
+                        <tr className={mettede ? "alert-box" : null || mettedeNull ? "alert-box" : null}>
+                            <th scope="row" className="table-font">
+                            {mettede ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mettede fettsyrer mengde. Mettede fettsyrer skal være lavere enn eller lik 1,5 g / 100 g" placement="right" arrow>
+                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null} 
+                            {mettedeNull ? <Tooltip title="Mangler verdi i mettede fettsyrer parameter" placement="right" arrow>
+                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null}
+                            Mettede fettsyrer (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="mettede" value={nutrition.mettede} onChange={changeHandle} className="form-control"></input>
                             </td>
@@ -150,8 +179,13 @@ const LysLapskaus = (props) => {
                                 <input type="number" min="0" step="any" name="karbohydrat" value={nutrition.karbohydrat} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr className={sukkerarter ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{sukkerarter ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av sukkerarter mengde. Sukkerarter skal være lavere enn eller lik 3 g / 100 g" placement="right" arrow><div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null} Sukkerarter (g)</th>
+                        <tr className={sukkerarter ? "alert-box" : null || sukkerarterNull ? "alert-box" : null}>
+                            <th scope="row" className="table-font">
+                            {sukkerarter ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av sukkerarter mengde. Sukkerarter skal være lavere enn eller lik 3 g / 100 g" placement="right" arrow>
+                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
+                            {sukkerarterNull ? <Tooltip title="Mangler verdi i sukkerarter parameter" placement="right" arrow>
+                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} 
+                            Sukkerarter (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="sukkerarter" value={nutrition.sukkerarter} onChange={changeHandle} className="form-control"></input>
                             </td>
@@ -168,8 +202,13 @@ const LysLapskaus = (props) => {
                                 <input type="number" min="0" step="any" name="protein" value={nutrition.protein} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr className={salt ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{salt ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av salt mengde. Salt skal være lavere enn eller lik 0,8 g / 100 g" placement="right" arrow><div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null} Salt (g)</th>
+                        <tr className={salt ? "alert-box" : null || saltNull ? "alert-box" : null}>
+                            <th scope="row" className="table-font">
+                            {salt ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av salt mengde. Salt skal være lavere enn eller lik 0,8 g / 100 g" placement="right" arrow>
+                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
+                            {saltNull ? <Tooltip title="Mangler verdi i salt parameter" placement="right" arrow>
+                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} 
+                            Salt (g)</th>
                             <td colSpan="2">
                                 <input type="number" min="0" step="any" name="salt" value={nutrition.salt} onChange={changeHandle} className="form-control"></input>
                             </td>
