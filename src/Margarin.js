@@ -2,12 +2,16 @@ import { useState } from "react";
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tooltip from '@mui/material/Tooltip';
 
 const Margarin = (props) => {
 
     const [fett, setFett] = useState(false);
+    const [fettNull, setFettNull] = useState(false);
     const [mettede, setMettede] = useState(false);
+    const [mettedeNull, setMettedeNull] = useState(false);
     const [salt, setSalt] = useState(false);
+    const [saltNull, setSaltNull] = useState(false);
     const [energi, setEnergi] = useState(false);
     const [energiKal, setEnergiKal] = useState(false);
     const [enumettede, setEnumettede] = useState(false);
@@ -41,12 +45,15 @@ const Margarin = (props) => {
             nutrition.sukkerarter != "" && nutrition.energi != "" && nutrition.energiKal != "") {
             props.changeDiv(true);
             setFett(false);
+            setFettNull(false);
             setEnergi(false);
             setEnergiKal(false);
             setMettede(false);
+            setMettedeNull(false);
             setKarbohydrat(false);
             setSukkerarter(false);
             setSalt(false);
+            setSaltNull(false);
             setProtein(false);
             setEnumettede(false);
             setFlerumettede(false);
@@ -63,7 +70,13 @@ const Margarin = (props) => {
             } else {
                 setEnergiKal(false);
             }
-            if (nutrition.mettede === "" || nutrition.mettede < 0 || nutrition.mettede > 26.4) {
+            if (nutrition.mettede === "" || nutrition.mettede < 0) {
+                setMettedeNull(true);
+                props.changeDiv(false);
+            } else {
+                setMettedeNull(false);
+            }
+            if (nutrition.mettede > 26.4) {
                 setMettede(true);
                 props.changeDiv(false);
             } else {
@@ -99,13 +112,25 @@ const Margarin = (props) => {
             } else {
                 setProtein(false);
             }
-            if (nutrition.salt === "" || nutrition.salt < 0 || nutrition.salt > 1.1) {
+            if (nutrition.salt === "" || nutrition.salt < 0) {
+                setSaltNull(true);
+                props.changeDiv(false);
+            } else {
+                setSaltNull(false);
+            }
+            if (nutrition.salt > 1.1) {
                 setSalt(true);
                 props.changeDiv(false);
             } else {
                 setSalt(false);
             }
-            if (nutrition.fett === "" || nutrition.fett > 80 || nutrition.fett < 0) {
+            if (nutrition.fett === "" || nutrition.fett < 0) {
+                setFettNull(true);
+                props.changeDiv(false);
+            } else {
+                setFettNull(false);
+            }
+            if (nutrition.fett > 80) {
                 setFett(true);
                 props.changeDiv(false);
             } else {
@@ -129,61 +154,80 @@ const Margarin = (props) => {
                     </thead>
                     <tbody>
                         <tr className={energi ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{energi ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Energi (kj)</th>
+                            <th scope="row" className="table-font">{energi ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (kj)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="energi" value={nutrition.energi} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={energiKal ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{energiKal ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Energi (kcal)</th>
+                            <th scope="row" className="table-font">{energiKal ? <Tooltip title="Mangler verdi i energi (kcal) parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (kcal)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="energiKal" value={nutrition.energiKal} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr className={fett ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{fett ? <FontAwesomeIcon className="alert-icon" icon={faBan} /> : null} Fett (g)</th>
+                        <tr className={fett ? "alert-box" : null || fettNull ? "alert-box" : null}>
+                            <th scope="row" className="table-font">
+                                {fett ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mengden fett. Mengden på fett må være lavere enn eller lik 80 / 100 g for å møte kravene for Nøkkelhullsmerking." placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
+                                {fettNull ? <Tooltip title="Mangler verdi i fett parameter" placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Fett (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="fett" value={nutrition.fett} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr className={mettede ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{mettede ? <FontAwesomeIcon className="alert-icon" icon={faBan} /> : null} Mettede fettsyrer (g)</th>
+                        <tr className={mettede ? "alert-box" : null || mettedeNull ? "alert-box" : null}>
+                            <th scope="row" className="table-font">
+                                {mettede ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mengden mettede fettsyrer. Mengden på mettede fettsyrer må være lavere enn eller lik 26,4 / 100 g for å møte kravene for Nøkkelhullsmerking." placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
+                                {mettedeNull ? <Tooltip title="Mangler verdi i mettede fettsyrer parameter" placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Mettede fettsyrer (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="mettede" value={nutrition.mettede} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={enumettede ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{enumettede ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Enumettede fettsyrer (g)</th>
+                            <th scope="row" className="table-font">{enumettede ? <Tooltip title="Mangler verdi i enumettede fettsyrer parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Enumettede fettsyrer (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="enumettede" value={nutrition.enumettede} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={flerumettede ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{flerumettede ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Flerumettede fettsyrer (g)</th>
+                            <th scope="row" className="table-font">{flerumettede ? <Tooltip title="Mangler verdi i flerumettede fettsyrer parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Flerumettede fettsyrer (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="flerumettede" value={nutrition.flerumettede} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={karbohydrat ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{karbohydrat ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Karbohydrat (g)</th>
+                            <th scope="row" className="table-font">{karbohydrat ? <Tooltip title="Mangler verdi i karbohydret parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Karbohydrat (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="karbohydrat" value={nutrition.karbohydrat} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={sukkerarter ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{sukkerarter ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Sukkerarter (g)</th>
+                            <th scope="row" className="table-font">{sukkerarter ? <Tooltip title="Mangler verdi i sukkerarter parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Sukkerarter (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="sukkerarter" value={nutrition.sukkerarter} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={protein ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{protein ? <FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /> : null} Protein (g)</th>
+                            <th scope="row" className="table-font">{protein ? <Tooltip title="Mangler verdi i protein parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Protein (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="protein" value={nutrition.protein} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
-                        <tr className={salt ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{salt ? <FontAwesomeIcon className="alert-icon" icon={faBan} /> : null} Salt (g)</th>
+                        <tr className={salt ? "alert-box" : null || saltNull ? "alert-box" : null}>
+                            <th scope="row" className="table-font">
+                                {salt ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mengden salt. Mengden på salt må være lavere enn eller lik 1,1 / 100 g for å møte kravene for Nøkkelhullsmerking." placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
+                                {saltNull ? <Tooltip title="Mangler verdi i salt parameter" placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Salt (g)</th>
                             <td colSpan="2">
                                 <input type="number" min="0" step="any" name="salt" value={nutrition.salt} onChange={changeHandle} className="form-control"></input>
                             </td>

@@ -67,13 +67,13 @@ const LysLapskaus = (props) => {
             } else {
                 setEnergiKal(false);
             }
-            if (nutrition.mettede === "" || nutrition.mettede < 0 ) {
+            if (nutrition.mettede === "" || nutrition.mettede < 0) {
                 setMettedeNull(true);
                 props.changeDiv(false);
             } else {
                 setMettedeNull(false);
             }
-            if (nutrition.mettede > 1.5 ) {
+            if (nutrition.mettede > 1.5) {
                 setMettede(true);
                 props.changeDiv(false);
             } else {
@@ -103,7 +103,7 @@ const LysLapskaus = (props) => {
             } else {
                 setProtein(false);
             }
-            if (nutrition.salt === "" || nutrition.salt < 0 ) {
+            if (nutrition.salt === "" || nutrition.salt < 0) {
                 setSaltNull(true);
                 props.changeDiv(false);
             } else {
@@ -164,11 +164,10 @@ const LysLapskaus = (props) => {
                         </tr>
                         <tr className={mettede ? "alert-box" : null || mettedeNull ? "alert-box" : null}>
                             <th scope="row" className="table-font">
-                            {mettede ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mettede fettsyrer mengde. Mettede fettsyrer skal være lavere enn eller lik 1,5 g / 100 g" placement="right" arrow>
-                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null} 
-                            {mettedeNull ? <Tooltip title="Mangler verdi i mettede fettsyrer parameter" placement="right" arrow>
-                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null}
-                            Mettede fettsyrer (g)</th>
+                                {mettede ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mengden mettede fettsyrer. Mengden på mettede fettsyrer må være lavere enn eller lik 1,5 / 100 g for å møte kravene for Nøkkelhullsmerking." placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
+                                {mettedeNull ? <Tooltip title="Mangler verdi i mettede fettsyrer parameter" placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Mettede fettsyrer (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="mettede" value={nutrition.mettede} onChange={changeHandle} className="form-control"></input>
                             </td>
@@ -181,11 +180,10 @@ const LysLapskaus = (props) => {
                         </tr>
                         <tr className={sukkerarter ? "alert-box" : null || sukkerarterNull ? "alert-box" : null}>
                             <th scope="row" className="table-font">
-                            {sukkerarter ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av sukkerarter mengde. Sukkerarter skal være lavere enn eller lik 3 g / 100 g" placement="right" arrow>
-                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
-                            {sukkerarterNull ? <Tooltip title="Mangler verdi i sukkerarter parameter" placement="right" arrow>
-                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} 
-                            Sukkerarter (g)</th>
+                                {sukkerarter ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mengden sukkerarter. Mengden på sukkerarter må være lavere enn eller lik 3 / 100 g for å møte kravene for Nøkkelhullsmerking." placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
+                                {sukkerarterNull ? <Tooltip title="Mangler verdi i sukkerarter parameter" placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Sukkerarter (g)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="sukkerarter" value={nutrition.sukkerarter} onChange={changeHandle} className="form-control"></input>
                             </td>
@@ -204,11 +202,10 @@ const LysLapskaus = (props) => {
                         </tr>
                         <tr className={salt ? "alert-box" : null || saltNull ? "alert-box" : null}>
                             <th scope="row" className="table-font">
-                            {salt ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av salt mengde. Salt skal være lavere enn eller lik 0,8 g / 100 g" placement="right" arrow>
-                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
-                            {saltNull ? <Tooltip title="Mangler verdi i salt parameter" placement="right" arrow>
-                            <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} 
-                            Salt (g)</th>
+                                {salt ? <Tooltip title="Produktet innfrir ikke Nøkkelhullet på grunn av mengden salt. Mengden på salt må være lavere enn eller lik o,8 / 100 g for å møte kravene for Nøkkelhullsmerking." placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faBan} /></div></Tooltip> : null}
+                                {saltNull ? <Tooltip title="Mangler verdi i salt parameter" placement="right" arrow>
+                                    <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Salt (g)</th>
                             <td colSpan="2">
                                 <input type="number" min="0" step="any" name="salt" value={nutrition.salt} onChange={changeHandle} className="form-control"></input>
                             </td>
