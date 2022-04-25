@@ -19,7 +19,7 @@ const App = () => {
       <div className="row">
         <h3>Registrer ny matvare</h3>
         <div className="col-md-8">
-          <p>Ved å bruke denne webkalkulatoren kan du sjekke om ny oppskriften din imøtekommer kostholdsråd og eventuelt nøkkelhullet og ernæringspåstand.</p>
+          <p>Ved å bruke denne webkalkulatoren kan du sjekke om resept på nytt matvareprodukt møter kravet for Nøkkelhullsmerking.</p>
         </div>
         <div className="button-div col-md-4">
           <NavLink to="/calculator" className="btn btn-primary btn-lg button-search">Gå til webkalkulatoren</NavLink>
