@@ -5,6 +5,7 @@ import HeaderCalculator from './HeaderCalculator';
 import LysLapskaus from './LysLapskaus';
 import Margarin from './Margarin';
 import Yoghurt from './Yoghurt';
+import keyholeLgog from './circle-keyhole-logo.png';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +19,8 @@ const Calculator = () => {
     ];
 
     const selectBread = [
-        { value: 'yoghurt', label: 'Yoghurt' },
+        { value: 'yoghurtUtenTilsatt', label: 'Yoghurt uten tilsatt smak' },
+        { value: 'yoghurtMedTilsatt', label: 'Yoghurt med tilsatt smak' },
         { value: 'kefir', label: 'Kefir' },
         { value: 'romme', label: 'Rømme' },
         { value: 'syrnet melk', label: 'Syrnet melk' }
@@ -103,7 +105,7 @@ const Calculator = () => {
                         </div>}
 
                     {selectsGroup === 'fermenterte meieriprodukter' &&
-                        selectsProduct === 'yoghurt' &&
+                        selectsProduct === 'yoghurtUtenTilsatt' &&
                         <Yoghurt changeDiv={updateResult} />
                     }
 
@@ -124,6 +126,7 @@ const Calculator = () => {
 
                     {showResults ?
                         <div className="container food-result-container">
+                            <img src={keyholeLgog} className="keyhole-logo img-fluid" alt="keyhole logo" />
                             <h5>Nøkkelhullet</h5>
                             <div className='row'>
                                 <div className='col-md-10'>
@@ -136,7 +139,7 @@ const Calculator = () => {
                             {info ? <div className="container info-div row">
                                 <div className='col-md-10'>
                                     <p>Les mer om hvilke krav det stilles for merking av Nokkellhullet på Lovdatas "Forskrift om frivillig merking a nœringsmidler med Nokkellhullet":
-                                        <a href="https://lovdata.no/dokument/SF/forskrift/2015-02-18-139">lovdata.no</a></p>
+                                        <a href="https://lovdata.no/dokument/SF/forskrift/2015-02-18-139" target="_blank" rel="noopener noreferrer">lovdata.no</a></p>
                                 </div>
                                 <div className='col-md-2'>
                                     <FontAwesomeIcon className='x-button' icon={faXmarkCircle} onClick={onClickClose} />
@@ -158,7 +161,7 @@ const Calculator = () => {
                         {info ? <div className="container info-div row">
                             <div className='col-md-10'>
                                 <p>Les mer om hvordan oppnå kriteriene på Lovdata’s Forskrift om frivillig merking av næringsmidler med Nøkkelhullet:
-                                    <a href="https://lovdata.no/dokument/SF/forskrift/2015-02-18-139">lovdata.no</a></p>
+                                    <a href="https://lovdata.no/dokument/SF/forskrift/2015-02-18-139" target="_blank" rel="noopener noreferrer">lovdata.no</a></p>
                             </div>
                             <div className='col-md-2'>
                                 <FontAwesomeIcon className='x-button' icon={faXmarkCircle} onClick={onClickClose} />

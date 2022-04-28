@@ -13,6 +13,11 @@
     height: 66px;
 }
 
+.keyhole-logo {
+    height: 66px;
+    padding-bottom: 0.5rem;
+}
+
 .nav-logo {
     height: 2rem;
     padding: 1rem;

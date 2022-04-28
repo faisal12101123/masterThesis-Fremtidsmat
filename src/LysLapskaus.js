@@ -132,7 +132,7 @@ const LysLapskaus = (props) => {
 
     return (
         <div>
-            <h5>Porsjon (grams)  100</h5>
+            <h5>Porsjon (gram)  100</h5>
 
             <div className="bg-light">
 
@@ -145,7 +145,7 @@ const LysLapskaus = (props) => {
                     </thead>
                     <tbody>
                         <tr className={energi ? "alert-box" : null}>
-                            <th scope="row" className="table-font">{energi ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow><div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (kj)</th>
+                            <th scope="row" className="table-font">{energi ? <Tooltip title="Mangler verdi i energi (KJ) parameter" placement="right" arrow><div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (KJ)</th>
                             <td>
                                 <input type="number" min="0" step="any" name="energi" value={nutrition.energi} onChange={changeHandle} className="form-control"></input>
                             </td>

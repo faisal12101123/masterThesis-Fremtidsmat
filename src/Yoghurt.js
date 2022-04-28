@@ -108,7 +108,7 @@ const Yoghurt = (props) => {
 
     return (
         <div>
-            <h4>Porsjon (grams)  100</h4>
+            <h4>Porsjon (gram)  100</h4>
 
             <div className="bg-light">
 
@@ -121,14 +121,14 @@ const Yoghurt = (props) => {
                     </thead>
                     <tbody>
                         <tr className={energi ? "alert-box" : null}>
-                            <th for="energi" scope="row" className="table-font">{energi ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow>
-                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (kj)</th>
+                            <th for="energi" scope="row" className="table-font">{energi ? <Tooltip title="Mangler verdi i energi (KJ) parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (KJ)</th>
                             <td>
                                 <input id='energi' aria-labelledby="energi" type="number" min="0" step="any" name="energi" value={nutrition.energi} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={energiKal ? "alert-box" : null}>
-                            <th for="energiKal" scope="row" className="table-font">{energiKal ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow>
+                            <th for="energiKal" scope="row" className="table-font">{energiKal ? <Tooltip title="Mangler verdi i energi (kcal) parameter" placement="right" arrow>
                                 <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (kcal)</th>
                             <td>
                                 <input id='energiKal' aria-labelledby="energiKal" type="number" min="0" step="any" name="energiKal" value={nutrition.energiKal} onChange={changeHandle} className="form-control"></input>
@@ -145,35 +145,35 @@ const Yoghurt = (props) => {
                             </td>
                         </tr>
                         <tr className={mettede ? "alert-box" : null}>
-                            <th for='mettede' scope="row" className="table-font">{mettede ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow>
+                            <th for='mettede' scope="row" className="table-font">{mettede ? <Tooltip title="Mangler verdi i mettede fettsyrer parameter" placement="right" arrow>
                                 <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Mettede fettsyrer (g)</th>
                             <td>
                                 <input id='mettede' aria-labelledby="Mettede" type="number" min="0" step="any" name="mettede" value={nutrition.mettede} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={karbohydrat ? "alert-box" : null}>
-                            <th for='karbohydrat' scope="row" className="table-font">{karbohydrat ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow>
+                            <th for='karbohydrat' scope="row" className="table-font">{karbohydrat ? <Tooltip title="Mangler verdi i karbohydrat parameter" placement="right" arrow>
                                 <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Karbohydrat (g)</th>
                             <td>
                                 <input id='karbohydrat' aria-labelledby="Karbohydrat" type="number" min="0" step="any" name="karbohydrat" value={nutrition.karbohydrat} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={sukkerarter ? "alert-box" : null}>
-                            <th for='sukkerarter' scope="row" className="table-font">{sukkerarter ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow>
+                            <th for='sukkerarter' scope="row" className="table-font">{sukkerarter ? <Tooltip title="Mangler verdi i sukkerarter parameter" placement="right" arrow>
                                 <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Sukkerarter (g)</th>
                             <td>
                                 <input id='sukkerarter' aria-labelledby="Sukkerarter" type="number" min="0" step="any" name="sukkerarter" value={nutrition.sukkerarter} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={protein ? "alert-box" : null}>
-                            <th for='protein' scope="row" className="table-font">{protein ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow>
+                            <th for='protein' scope="row" className="table-font">{protein ? <Tooltip title="Mangler verdi i protein parameter" placement="right" arrow>
                                 <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Protein (g)</th>
                             <td>
                                 <input id='protein' aria-labelledby="Protein" type="number" min="0" step="any" name="protein" value={nutrition.protein} onChange={changeHandle} className="form-control"></input>
                             </td>
                         </tr>
                         <tr className={salt ? "alert-box" : null}>
-                            <th for='salt' scope="row" className="table-font">{salt ? <Tooltip title="Mangler verdi i energi (kj) parameter" placement="right" arrow>
+                            <th for='salt' scope="row" className="table-font">{salt ? <Tooltip title="Mangler verdi i salt parameter" placement="right" arrow>
                                 <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Salt (g)</th>
                             <td>
                                 <input id='salt' aria-labelledby="Salt" type="number" min="0" step="any" name="salt" value={nutrition.salt} onChange={changeHandle} className="form-control"></input>
