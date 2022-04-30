@@ -121,8 +121,8 @@ const Yoghurt = (props) => {
                     </thead>
                     <tbody>
                         <tr className={energi ? "alert-box" : null}>
-                            <th for="energi" scope="row" className="table-font">{energi ? <Tooltip title="Mangler verdi i energi (KJ) parameter" placement="right" arrow>
-                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (KJ)</th>
+                            <th for="energi" scope="row" className="table-font">{energi ? <Tooltip title="Mangler verdi i energi (kJ) parameter" placement="right" arrow>
+                                <div className="icon"><FontAwesomeIcon className="alert-icon" icon={faCircleExclamation} /></div></Tooltip> : null} Energi (kJ)</th>
                             <td>
                                 <input id='energi' aria-labelledby="energi" type="number" min="0" step="any" name="energi" value={nutrition.energi} onChange={changeHandle} className="form-control"></input>
                             </td>
